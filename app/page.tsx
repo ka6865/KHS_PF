@@ -1,21 +1,21 @@
+import { AmbientGridBackground } from "./components/AmbientGridBackground";
+import { ArchitectureDiagram } from "./components/ArchitectureDiagram";
 import { BgmsFeatureSlider } from "./components/BgmsFeatureSlider";
+import { CopyEmailButton } from "./components/CopyEmailButton";
+import { HeroBusinessCard } from "./components/HeroBusinessCard";
+import { MagneticButton } from "./components/MagneticButton";
 import { PortfolioNav } from "./components/PortfolioNav";
 import { ScrollReveal } from "./components/ScrollReveal";
 import { SectionLink } from "./components/SectionLink";
 import { TeamProjectShowcase } from "./components/TeamProjectShowcase";
 import { TechIcon } from "./components/TechIcon";
+import { TiltCard } from "./components/TiltCard";
 
 const heroProofs = [
   "BGMS.kr 운영 서비스",
   "PUBG API + Telemetry",
   "AI 코칭 + Replay",
   "Security + Operations",
-];
-
-const heroProfileItems = [
-  { label: "Started", value: "2025.12" },
-  { label: "Scope", value: "Map / Stats / AI / Community" },
-  { label: "Operations", value: "API Monitor / Cache Maintenance" },
 ];
 
 const portfolioMetrics = [
@@ -205,34 +205,35 @@ const techGroups = [
   {
     title: "Frontend",
     categoryKey: "cat-frontend",
-    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Responsive UI"],
-    evidence: "BGMS의 지도·전적·커뮤니티 화면과 모바일 레이아웃 구현에 사용",
+    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Streamlit", "Responsive UI"],
+    evidence: "BGMS 1인 운영 서비스 및 AI Trading 대시보드, Subway 400만 행 데이터 시각화에 적용",
   },
   {
     title: "Backend",
     categoryKey: "cat-backend",
-    items: ["Supabase", "PostgreSQL", "Auth", "RLS", "API Contract"],
-    evidence: "인증 세션, 관리자 권한, 캐시 registry, 게시판 데이터 경계에 적용",
+    items: ["Supabase", "Flask (Python)", "PostgreSQL", "SQLAlchemy", "Auth/RLS", "Toss Payments"],
+    evidence: "BGMS 권한 통제/세션 관리 및 KBO 티켓 P2P 결제 승인·중복 방지 DB Lock 구현",
   },
   {
     title: "AI / Data",
     categoryKey: "cat-ai",
-    items: ["Gemini AI", "Telemetry", "AI Streaming", "AI Cache", "Data Visualization"],
-    evidence: "매치 코칭의 모델 폴백·스트리밍 응답·결과 캐시와 리플레이 분석에 적용",
+    items: ["Gemini AI", "LangChain", "XGBoost", "Pandas", "Scikit-learn", "Telemetry"],
+    evidence: "BGMS AI 텔레메트리 매치 코칭, AI Trading 맥락 챗봇, Subway 24시간 혼잡도 예측 모델링",
   },
   {
     title: "DevOps & Infra",
     categoryKey: "cat-operation",
     items: ["AWS EC2", "Docker", "Docker Compose", "Vercel", "Cloudflare R2", "GitHub Actions"],
-    evidence: "BGMS는 R2 텔레메트리 저장과 GitHub Actions 정기 작업을 운영하고, AWS EC2는 별도 프로젝트 배포 경험",
+    evidence: "BGMS R2 텔레메트리 저장소/Cron 정기 운영 및 AI Trading Docker Compose 기반 EC2 배포 경험",
   },
 ];
 
 export default function Home() {
-  const visibleMetrics = portfolioMetrics.filter((metric) => metric.value);
+  const visibleMetrics = portfolioMetrics.filter((m) => Boolean(m.value));
 
   return (
-    <main className="min-h-screen bg-[#f7f3ea] text-[#181818]">
+    <main className="min-h-screen bg-[#f7f3ea] text-[#181818] relative overflow-hidden">
+      <AmbientGridBackground />
       <ScrollReveal />
       <section id="top" className="hero-shell">
         <PortfolioNav />
@@ -241,7 +242,6 @@ export default function Home() {
           <div className="hero-copy">
             <p className="eyebrow">Full-stack Developer Journey</p>
             <h1>
-              강희성
               <span>운영 서비스 BGMS를 개발·개선하는 풀스택 개발자</span>
             </h1>
             <p className="hero-description">
@@ -249,7 +249,7 @@ export default function Home() {
               인증·오류 대응·운영 경계까지 직접 구현합니다.
             </p>
             <div className="hero-actions">
-              <a
+              <MagneticButton
                 className="primary-link"
                 href="https://bgms.kr"
                 target="_blank"
@@ -257,7 +257,7 @@ export default function Home() {
               >
                 <TechIcon name="globe" className="btn-icon" />
                 <span>BGMS.kr 운영 서비스</span>
-              </a>
+              </MagneticButton>
               <SectionLink className="secondary-link" sectionId="projects">
                 <span>프로젝트 보기</span>
               </SectionLink>
@@ -284,39 +284,7 @@ export default function Home() {
             ) : null}
           </div>
 
-          <aside className="hero-panel" aria-label="포트폴리오 핵심 정보">
-            <div className="hero-product-meta">
-              <span>BGMS.kr</span>
-              <strong>LIVE SERVICE</strong>
-            </div>
-            <div className="hero-product-stage">
-              <div className="hero-product-browser" aria-hidden="true">
-                <span className="dot dot-red"></span>
-                <span className="dot dot-yellow"></span>
-                <span className="dot dot-green"></span>
-                <span>bgms.kr/stats</span>
-              </div>
-              <img
-                src="/portfolio-assets/bgms-feature-search.png"
-                alt="BGMS 대표 제품 화면"
-                width={1920}
-                height={1080}
-                loading="eager"
-                fetchPriority="high"
-              />
-              <div className="hero-product-caption">
-                <span>MAP · STATS · AI · COMMUNITY</span>
-              </div>
-            </div>
-            <dl className="hero-profile-list">
-              {heroProfileItems.map((item) => (
-                <div key={item.label}>
-                  <dt>{item.label}</dt>
-                  <dd>{item.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </aside>
+          <HeroBusinessCard />
         </div>
 
         <div className="marquee" aria-label="핵심 기술 흐름">
@@ -345,13 +313,15 @@ export default function Home() {
           </div>
           <div className="about-highlight-grid">
             {aboutHighlights.map((item) => (
-              <article key={item.title} className="about-highlight-card">
-                <div className="about-highlight-header">
-                  <TechIcon name={item.iconKey} className="about-highlight-icon" />
-                  <h3>{item.title}</h3>
-                </div>
-                <p>{item.body}</p>
-              </article>
+              <TiltCard key={item.title}>
+                <article className="about-highlight-card">
+                  <div className="about-highlight-header">
+                    <TechIcon name={item.iconKey} className="about-highlight-icon" />
+                    <h3>{item.title}</h3>
+                  </div>
+                  <p>{item.body}</p>
+                </article>
+              </TiltCard>
             ))}
           </div>
         </div>
@@ -363,15 +333,17 @@ export default function Home() {
           </div>
           <div className="about-values-grid">
             {aboutCoreValues.map((val) => (
-              <article key={val.title} className="value-card">
-                <div className="value-card-top">
-                  <span className="value-num">{val.num}</span>
-                  <TechIcon name={val.iconKey} className="value-icon" />
-                </div>
-                <h3>{val.title}</h3>
-                <p className="value-subtitle">{val.subtitle}</p>
-                <p className="value-body">{val.body}</p>
-              </article>
+              <TiltCard key={val.title}>
+                <article className="value-card">
+                  <div className="value-card-top">
+                    <span className="value-num">{val.num}</span>
+                    <TechIcon name={val.iconKey} className="value-icon" />
+                  </div>
+                  <h3>{val.title}</h3>
+                  <p className="value-subtitle">{val.subtitle}</p>
+                  <p className="value-body">{val.body}</p>
+                </article>
+              </TiltCard>
             ))}
           </div>
         </div>
@@ -390,6 +362,8 @@ export default function Home() {
 
         <div className="featured-card">
           <BgmsFeatureSlider slides={bgmsFeatureSlides} />
+
+          <ArchitectureDiagram />
 
           <div className="featured-content">
             <div className="featured-links">
@@ -422,21 +396,23 @@ export default function Home() {
         </div>
         <div className="tech-grid">
           {techGroups.map((group) => (
-            <article key={group.title} className="tech-card">
-              <div className="tech-card-header">
-                <TechIcon name={group.categoryKey} className="tech-group-icon" />
-                <h3>{group.title}</h3>
-              </div>
-              <p className="tech-evidence">{group.evidence}</p>
-              <div className="tech-badge-container">
-                {group.items.map((item) => (
-                  <span key={item} className="tech-badge">
-                    <TechIcon name={item} className="tech-item-icon" />
-                    <span className="tech-badge-text">{item}</span>
-                  </span>
-                ))}
-              </div>
-            </article>
+            <TiltCard key={group.title}>
+              <article className="tech-card">
+                <div className="tech-card-header">
+                  <TechIcon name={group.categoryKey} className="tech-group-icon" />
+                  <h3>{group.title}</h3>
+                </div>
+                <p className="tech-evidence">{group.evidence}</p>
+                <div className="tech-badge-container">
+                  {group.items.map((item) => (
+                    <span key={item} className="tech-badge">
+                      <TechIcon name={item} className="tech-item-icon" />
+                      <span className="tech-badge-text">{item}</span>
+                    </span>
+                  ))}
+                </div>
+              </article>
+            </TiltCard>
           ))}
         </div>
       </section>
@@ -457,10 +433,7 @@ export default function Home() {
               <TechIcon name="github" className="btn-icon" />
               <span>GitHub</span>
             </a>
-            <a href="mailto:ka6865@gmail.com">
-              <TechIcon name="mail" className="btn-icon" />
-              <span>Email</span>
-            </a>
+            <CopyEmailButton email="ka6865@gmail.com" />
             <a href="https://bgms.kr" target="_blank" rel="noreferrer">
               <TechIcon name="globe" className="btn-icon" />
               <span>BGMS</span>

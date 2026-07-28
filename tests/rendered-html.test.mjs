@@ -32,7 +32,7 @@ test("server-renders the portfolio landing page", async () => {
 
   const html = await response.text();
   assert.match(html, /<html lang="ko">/i);
-  assert.match(html, /<title>Kang Hee Sung Portfolio<\/title>/i);
+  assert.match(html, /<title>Kang Hee Sung Portfolio/i);
   assert.match(html, /강희성/);
   assert.match(html, /Full-stack Developer Journey/);
   assert.match(html, /운영 서비스 BGMS를 개발·개선하는 풀스택 개발자/);
@@ -110,7 +110,7 @@ test("server-renders the portfolio landing page", async () => {
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|SkeletonPreview/);
 });
 
-test("keeps starter and rejected 3D experiment code out of the portfolio", async () => {
+test("keeps the portfolio structure and product interactions in sync", async () => {
   const [page, slider, projectShowcase, styles, layout, packageJson, readme] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/components/BgmsFeatureSlider.tsx", import.meta.url), "utf8"),
@@ -124,9 +124,10 @@ test("keeps starter and rejected 3D experiment code out of the portfolio", async
   assert.match(page, /heroProofs/);
   assert.match(page, /aboutHighlights/);
   assert.doesNotMatch(page, /siteMapItems|Site Map|읽는 사람이 자연스럽게 따라오도록/);
-  assert.match(page, /heroProfileItems/);
   assert.match(page, /PortfolioNav/);
-  assert.match(page, /hero-product-stage/);
+  assert.match(page, /HeroBusinessCard/);
+  assert.match(page, /ArchitectureDiagram/);
+  assert.doesNotMatch(page, /heroMockupSlides/);
   assert.match(page, /bgmsFeatureSlides/);
   assert.match(page, /caseStudy:/);
   assert.match(page, /BgmsFeatureSlider/);

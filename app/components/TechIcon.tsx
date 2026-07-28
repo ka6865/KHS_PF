@@ -250,6 +250,7 @@ export function TechIcon({ name, className = "w-4 h-4" }: TechIconProps) {
       );
 
     // Project Archive specific stack icons
+    case "flask (python)":
     case "flask":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#181818" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -287,6 +288,7 @@ export function TechIcon({ name, className = "w-4 h-4" }: TechIconProps) {
 
     case "xgboost":
     case "lightgbm":
+    case "scikit-learn":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
@@ -426,6 +428,32 @@ export function TechIcon({ name, className = "w-4 h-4" }: TechIconProps) {
       return (
         <svg className={className} viewBox="0 0 24 24" fill="currentColor">
           <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+        </svg>
+      );
+
+    case "langchain":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#1C3C3C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+        </svg>
+      );
+
+    case "cloudflare r2":
+    case "cloudflare":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="#F38020">
+          <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+        </svg>
+      );
+
+    case "github actions":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#2088FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="18" cy="18" r="3" />
+          <circle cx="6" cy="6" r="3" />
+          <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+          <line x1="6" y1="9" x2="6" y2="21" />
         </svg>
       );
 

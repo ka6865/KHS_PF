@@ -61,13 +61,14 @@ export function PortfolioNav() {
         {navigationItems.map((item) => (
           <SectionLink
             key={item.id}
-            className={activeSection === item.id ? "is-active" : undefined}
+            className={activeSection === item.id ? "is-active" : ""}
             sectionId={item.id}
           >
             {item.label}
           </SectionLink>
         ))}
       </div>
+      <div className="scroll-progress-line" aria-hidden="true" />
     </nav>
   );
 }
