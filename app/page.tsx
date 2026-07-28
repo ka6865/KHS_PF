@@ -1,19 +1,27 @@
 import { BgmsFeatureSlider } from "./components/BgmsFeatureSlider";
+import { PortfolioNav } from "./components/PortfolioNav";
+import { ScrollReveal } from "./components/ScrollReveal";
 import { SectionLink } from "./components/SectionLink";
 import { TeamProjectShowcase } from "./components/TeamProjectShowcase";
 import { TechIcon } from "./components/TechIcon";
 
 const heroProofs = [
-  "Full-stack Developer",
-  "Next.js + Supabase",
-  "BGMS.kr 운영 경험",
-  "AI 기능 제품화",
+  "BGMS.kr 운영 서비스",
+  "PUBG API + Telemetry",
+  "AI 코칭 + Replay",
+  "Security + Operations",
 ];
 
 const heroProfileItems = [
-  { label: "Main Project", value: "BGMS.kr" },
-  { label: "Focus", value: "Full-stack / AI" },
-  { label: "Contact", value: "ka6865@gmail.com" },
+  { label: "Started", value: "2025.12" },
+  { label: "Scope", value: "Map / Stats / AI / Community" },
+  { label: "Operations", value: "API Monitor / Cache Maintenance" },
+];
+
+const portfolioMetrics = [
+  { label: "사용자 지표", value: "" },
+  { label: "운영 기간", value: "" },
+  { label: "성능 개선", value: "" },
 ];
 
 const aboutHighlights = [
@@ -24,8 +32,8 @@ const aboutHighlights = [
   },
   {
     iconKey: "about-ai",
-    title: "AI 결과 화면화",
-    body: "AI 분석 결과를 문장으로만 보여주지 않고 전술 등급, 비교, 리플레이 같은 화면 요소로 풀어냅니다.",
+    title: "분석 결과 제품화",
+    body: "외부 데이터와 텔레메트리 분석 결과를 AI 코칭, 비교, 리플레이처럼 사용자가 확인할 수 있는 화면으로 연결합니다.",
   },
   {
     iconKey: "about-stability",
@@ -35,7 +43,7 @@ const aboutHighlights = [
   {
     iconKey: "about-code",
     title: "외부 API 예외 처리",
-    body: "PUBG API, AI 분석 요청, 커뮤니티 데이터가 각각 실패할 수 있다는 전제로 화면과 데이터 경계를 설계합니다.",
+    body: "PUBG API, AI 요청, 사용자 작성 데이터가 서로 다른 방식으로 실패한다는 전제로 요청·저장·화면의 경계를 나눕니다.",
   },
 ];
 
@@ -63,28 +71,6 @@ const aboutCoreValues = [
   },
 ];
 
-const bgmsScope = [
-  {
-    title: "문제 해결 중심 케이스",
-    body: "PUBG 유저가 맵 정보, 전적, 전술 분석, 커뮤니티를 각각 다른 도구에서 확인해야 하는 흐름을 하나의 서비스 안에서 이어지도록 정리했습니다.",
-  },
-  {
-    title: "담당 범위",
-    body: "1인 풀스택 개발자로 UX 구조, 프론트엔드 화면, 데이터 흐름, 인증/권한, AI 분석 기능을 직접 연결했습니다.",
-  },
-];
-
-const bgmsDecisions = [
-  {
-    title: "탐색에서 분석까지 이어지는 흐름",
-    body: "맵 정보 확인 후 전적 검색과 AI 분석으로 자연스럽게 이동하도록 화면 우선순위를 정리했습니다.",
-  },
-  {
-    title: "외부 API와 서비스 데이터를 분리",
-    body: "PUBG 데이터 조회, AI 분석, 커뮤니티/인증 흐름의 실패 조건이 서로 섞이지 않도록 화면과 데이터 경계를 나눴습니다.",
-  },
-];
-
 const bgmsFeatureSlides = [
   {
     title: "AI 전적 검색",
@@ -94,6 +80,14 @@ const bgmsFeatureSlides = [
     image: "/portfolio-assets/bgms-feature-search.png",
     imageAlt: "BGMS 닉네임 기반 AI 전적 분석 화면",
     url: "https://bgms.kr/stats",
+    caseStudy: {
+      problemLead: "시즌 요약과 개별 경기 흐름의 분리",
+      problem: "닉네임 검색만으로는 시즌 요약과 특정 경기에서 나온 플레이를 같은 맥락에서 확인할 수 없었습니다.",
+      solutionLead: "검색부터 경기 분석까지 한 흐름으로 연결",
+      solution: "검색 결과에서 시즌 요약, 최근 매치, 개별 경기 분석으로 이어지는 전적 탐색 경로를 하나로 묶었습니다.",
+      operationLead: "API 오류 기록과 429 응답 완화",
+      operation: "PUBG API 실패를 route·status·원인 문맥별로 기록하고, 429 응답은 캐시와 조회 흐름 보완으로 대응했습니다.",
+    },
   },
   {
     title: "AI 개별 전적 분석",
@@ -103,15 +97,31 @@ const bgmsFeatureSlides = [
     image: "/portfolio-assets/bgms-feature-report.png",
     imageAlt: "BGMS 플레이어별 AI 전적 분석 기능 화면",
     url: "https://bgms.kr/stats",
+    caseStudy: {
+      problemLead: "AI 조언의 근거를 바로 확인하기 어려움",
+      problem: "AI 조언을 전적 화면 밖에서 제공하면, 어떤 경기 데이터에서 나온 분석인지 즉시 확인할 수 없었습니다.",
+      solutionLead: "매치 데이터와 AI 코칭을 같은 화면에 배치",
+      solution: "최근 전적과 개별 경기 텔레메트리 맥락 안에 AI 코칭과 상세 지표를 배치해 분석 근거를 함께 확인하게 했습니다.",
+      operationLead: "분석 요청의 비용과 실패 조건 관리",
+      operation: "로그인 기반 요청, 모델 폴백, 스트리밍 응답, 결과 캐시와 사용량 추적으로 분석 요청의 비용과 실패를 관리했습니다.",
+    },
   },
   {
     title: "맵 정보 레이어 탐색",
     label: "Map System",
     body: "미라마, 에란겔, 태이고 등 맵별 비밀의 방 위치, 고정 보트, 글라이더, 차량 스폰 데이터를 인터랙티브 레이어로 탐색합니다.",
     tags: ["Interactive Map", "Secret Room", "Vehicle Spawns"],
-    image: "/portfolio-assets/bgms-feature-map.png",
+    image: "/portfolio-assets/bgms-feature-map.webp",
     imageAlt: "BGMS 미라마 비밀의 방 맵 레이어 탐색 화면",
     url: "https://bgms.kr/maps/miramar",
+    caseStudy: {
+      problemLead: "맵 안의 선택지를 빠르게 비교하기 어려움",
+      problem: "맵별 비밀의 방, 차량, 글라이더 위치를 개별 항목으로 보면 한 지역의 선택지를 한 번에 비교할 수 없었습니다.",
+      solutionLead: "레이어와 필터로 필요한 위치만 탐색",
+      solution: "맵별 데이터를 인터랙티브 레이어와 필터로 구성해, 필요한 위치 정보만 골라 탐색하도록 만들었습니다.",
+      operationLead: "지도 실패를 화면 전체 실패와 분리",
+      operation: "지도 타일 로드 실패가 화면 전체를 멈추지 않도록 분리하고, 모바일에서는 하단 시트와 지도 도구의 동작을 조정했습니다.",
+    },
   },
   {
     title: "실시간 전술 랭킹",
@@ -121,6 +131,14 @@ const bgmsFeatureSlides = [
     image: "/portfolio-assets/bgms-feature-rank.png",
     imageAlt: "BGMS 최근 전적 기반 플레이어 랭킹 화면",
     url: "https://bgms.kr/rankings",
+    caseStudy: {
+      problemLead: "주간 전술 지표를 한 번에 비교하기 어려움",
+      problem: "주간 딜량, 킬, 티어 데이터가 분리되면 이번 주 기준의 플레이 흐름을 한 화면에서 비교하기 어려웠습니다.",
+      solutionLead: "최근 전적과 모드 기준으로 현재 흐름을 비교",
+      solution: "최근 전적 기반 지표와 모드 필터를 조합해, 현재 경기 흐름과 전술 성향을 비교하는 랭킹으로 정리했습니다.",
+      operationLead: "오래된 검색 결과와 재호출을 줄임",
+      operation: "빠르게 바뀌는 자동완성 요청은 이전 요청을 취소하고 검색 키를 캐싱해, 오래된 결과와 불필요한 재호출을 줄였습니다.",
+    },
   },
   {
     title: "커뮤니티 & 파티 모집",
@@ -130,24 +148,14 @@ const bgmsFeatureSlides = [
     image: "/portfolio-assets/bgms-feature-community.png",
     imageAlt: "BGMS 패치노트 및 자유 게시판 커뮤니티 화면",
     url: "https://bgms.kr/board",
-  },
-];
-
-const bgmsOperations = [
-  {
-    title: "관리자 권한과 승인 게이트",
-    body: "관리자 role 검증과 RLS 기반 접근 정책을 분리해 일반 사용자 기능과 관리 기능의 권한 경계를 명확히 했습니다.",
-    tags: ["Supabase Auth", "RLS", "Approval Gate"],
-  },
-  {
-    title: "운영 모니터링",
-    body: "PUBG API 응답, AI 분석 요청, Supabase 데이터 상태를 관리자 화면에서 확인하고, Discord 금일 운영 리포트로 서비스 점검 흐름을 관리했습니다.",
-    tags: ["API Quota", "AI Cost", "Discord Report"],
-  },
-  {
-    title: "커뮤니티 보호 흐름",
-    body: "비속어 필터, 글·댓글 작성 제한, 신고 흐름처럼 커뮤니티 서비스에 필요한 기본 보호 장치를 구현 범위에 포함했습니다.",
-    tags: ["Profanity Filter", "Rate Limit", "Report Flow"],
+    caseStudy: {
+      problemLead: "작성 기능과 악성 요청을 함께 통제해야 함",
+      problem: "게시글과 댓글을 받는 서비스에는 비회원 작성, 과도한 요청, 이미지 업로드를 함께 통제하는 기준이 필요했습니다.",
+      solutionLead: "커뮤니티 활동을 하나의 게시판 흐름으로 연결",
+      solution: "공지·패치노트·파티 모집·제보를 게시판 흐름으로 연결해, 필요한 사용자 활동을 서비스 안에서 이어지게 했습니다.",
+      operationLead: "비회원 검증과 이미지 소유권을 관리",
+      operation: "비회원 요청은 Turnstile 서버 검증과 요청 제한을 거치게 하고, 업로드 이미지는 소유권 확인과 정리 수명주기로 관리했습니다.",
+    },
   },
 ];
 
@@ -198,71 +206,47 @@ const techGroups = [
     title: "Frontend",
     categoryKey: "cat-frontend",
     items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Responsive UI"],
+    evidence: "BGMS의 지도·전적·커뮤니티 화면과 모바일 레이아웃 구현에 사용",
   },
   {
     title: "Backend",
     categoryKey: "cat-backend",
     items: ["Supabase", "PostgreSQL", "Auth", "RLS", "API Contract"],
+    evidence: "인증 세션, 관리자 권한, 캐시 registry, 게시판 데이터 경계에 적용",
   },
   {
     title: "AI / Data",
     categoryKey: "cat-ai",
-    items: ["Gemini AI", "Telemetry", "RAG", "ML Signal", "Data Visualization"],
+    items: ["Gemini AI", "Telemetry", "AI Streaming", "AI Cache", "Data Visualization"],
+    evidence: "매치 코칭의 모델 폴백·스트리밍 응답·결과 캐시와 리플레이 분석에 적용",
   },
   {
     title: "DevOps & Infra",
     categoryKey: "cat-operation",
-    items: ["AWS EC2", "Docker", "Docker Compose", "Vercel", "Cloudflare", "GitHub", "Build Test"],
-  },
-];
-
-const growthItems = [
-  {
-    title: "혼자 만든 서비스일수록 범위를 선명하게 자르기",
-    body: "BGMS를 만들며 기능을 많이 넣는 것보다, 사용자가 자주 쓰는 흐름부터 안정적으로 완성하는 기준을 잡았습니다.",
-  },
-  {
-    title: "AI 기능은 근거 화면과 함께 보여주기",
-    body: "AI 문장을 그대로 노출하기보다 전적, 텔레메트리, 리플레이처럼 사용자가 판단할 수 있는 정보와 함께 배치했습니다.",
-  },
-  {
-    title: "포트폴리오는 설명보다 실행 화면으로 증명하기",
-    body: "면접에서 말로만 설명하지 않도록 운영 링크, 저장소, 실제 캡처 화면을 함께 정리하는 방향으로 개선하고 있습니다.",
+    items: ["AWS EC2", "Docker", "Docker Compose", "Vercel", "Cloudflare R2", "GitHub Actions"],
+    evidence: "BGMS는 R2 텔레메트리 저장과 GitHub Actions 정기 작업을 운영하고, AWS EC2는 별도 프로젝트 배포 경험",
   },
 ];
 
 export default function Home() {
+  const visibleMetrics = portfolioMetrics.filter((metric) => metric.value);
+
   return (
     <main className="min-h-screen bg-[#f7f3ea] text-[#181818]">
+      <ScrollReveal />
       <section id="top" className="hero-shell">
-        <nav className="top-nav" aria-label="주요 섹션">
-          <SectionLink
-            className="brand"
-            sectionId="top"
-            ariaLabel="포트폴리오 맨 위로"
-          >
-            KHS
-          </SectionLink>
-          <div className="nav-links">
-            <SectionLink sectionId="about">About</SectionLink>
-            <SectionLink sectionId="featured">BGMS</SectionLink>
-            <SectionLink sectionId="projects">Projects</SectionLink>
-            <SectionLink sectionId="tech">Tech Stack</SectionLink>
-            <SectionLink sectionId="contact">Contact</SectionLink>
-          </div>
-        </nav>
+        <PortfolioNav />
 
         <div className="hero-layout">
           <div className="hero-copy">
             <p className="eyebrow">Full-stack Developer Journey</p>
             <h1>
               강희성
-              <span>운영 중인 PUBG 데이터 서비스 BGMS를 만든 풀스택 개발자</span>
+              <span>운영 서비스 BGMS를 개발·개선하는 풀스택 개발자</span>
             </h1>
             <p className="hero-description">
-              Next.js, React, Supabase, 외부 API, AI 분석 기능을 하나의
-              서비스 화면으로 연결했습니다. BGMS 운영 경험을 중심으로 구현
-              범위를 보여줍니다.
+              PUBG API와 텔레메트리 데이터를 전적·AI 분석 화면으로 연결하고,
+              인증·오류 대응·운영 경계까지 직접 구현합니다.
             </p>
             <div className="hero-actions">
               <a
@@ -271,27 +255,59 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
               >
-                BGMS.kr 운영 서비스
+                <TechIcon name="globe" className="btn-icon" />
+                <span>BGMS.kr 운영 서비스</span>
               </a>
               <SectionLink className="secondary-link" sectionId="projects">
-                프로젝트 보기
+                <span>프로젝트 보기</span>
               </SectionLink>
             </div>
             <div className="hero-quick-links" aria-label="주요 외부 링크">
               <a href="https://github.com/ka6865" target="_blank" rel="noreferrer">
-                GitHub 보기
+                <TechIcon name="github" className="btn-icon-sm" />
+                <span>GitHub 보기</span>
               </a>
-              <a href="mailto:ka6865@gmail.com">Email 보내기</a>
+              <a href="mailto:ka6865@gmail.com">
+                <TechIcon name="mail" className="btn-icon-sm" />
+                <span>Email 보내기</span>
+              </a>
             </div>
+            {visibleMetrics.length > 0 ? (
+              <dl className="hero-metrics" aria-label="운영 지표">
+                {visibleMetrics.map((metric) => (
+                  <div key={metric.label}>
+                    <dt>{metric.label}</dt>
+                    <dd>{metric.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : null}
           </div>
 
           <aside className="hero-panel" aria-label="포트폴리오 핵심 정보">
-            <span>Available for work</span>
-            <strong>Full-stack / AI Developer</strong>
-            <p>
-              BGMS를 대표 사례로, 실제 화면과 코드에서 확인 가능한 구현 범위를
-              정리한 포트폴리오입니다.
-            </p>
+            <div className="hero-product-meta">
+              <span>BGMS.kr</span>
+              <strong>LIVE SERVICE</strong>
+            </div>
+            <div className="hero-product-stage">
+              <div className="hero-product-browser" aria-hidden="true">
+                <span className="dot dot-red"></span>
+                <span className="dot dot-yellow"></span>
+                <span className="dot dot-green"></span>
+                <span>bgms.kr/stats</span>
+              </div>
+              <img
+                src="/portfolio-assets/bgms-feature-search.png"
+                alt="BGMS 대표 제품 화면"
+                width={1920}
+                height={1080}
+                loading="eager"
+                fetchPriority="high"
+              />
+              <div className="hero-product-caption">
+                <span>MAP · STATS · AI · COMMUNITY</span>
+              </div>
+            </div>
             <dl className="hero-profile-list">
               {heroProfileItems.map((item) => (
                 <div key={item.label}>
@@ -312,14 +328,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="section about-section">
+      <section id="about" className="section about-section" data-reveal>
         <div className="section-heading">
           <p className="eyebrow">About Me</p>
           <h2>BGMS에서 보여준 구현 범위</h2>
           <p>
-            BGMS에서는 맵 정보 탐색, 전적 검색, AI 분석, 커뮤니티 기능을 하나의
-            서비스 안에 묶었습니다. 이 포트폴리오는 그 과정에서 맡은 화면 설계,
-            데이터 연결, 인증/권한, AI 기능 구현 범위를 보여줍니다.
+            1인 풀스택 개발자로 사용자 흐름, 프론트엔드 화면, 외부 데이터 연결,
+            인증·권한, AI 분석 기능을 하나의 서비스 경험으로 연결했습니다.
           </p>
         </div>
 
@@ -362,14 +377,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="featured" className="section featured-section">
+      <section id="featured" className="section featured-section" data-reveal>
         <div className="section-heading">
           <p className="eyebrow">Featured Project</p>
           <h2>BattleGrounds Management System</h2>
           <p>
-            BGMS는 배틀그라운드 팬을 위한 비공식 서비스입니다. 현재 서비스는
-            맵별 정보 탐색, AI 전적 검색, 랭킹, 무기 도감, 시뮬레이터,
-            커뮤니티로 이어지는 흐름을 제공합니다.
+            BGMS는 배틀그라운드 팬을 위한 비공식 서비스입니다. 지도 탐색에서
+            시작해 전적, 텔레메트리 기반 분석, AI 코칭, 커뮤니티로 기능을
+            확장했고 운영 과정에서 드러난 실패 조건도 함께 보완했습니다.
           </p>
         </div>
 
@@ -377,110 +392,21 @@ export default function Home() {
           <BgmsFeatureSlider slides={bgmsFeatureSlides} />
 
           <div className="featured-content">
-            <div className="featured-content-grid">
-              <div className="featured-left-panel">
-                <div className="project-meta">
-                  <span className="tech-badge highlight-blue">
-                    <TechIcon name="solo-dev" className="tech-item-icon" />
-                    <span className="tech-badge-text">1인 풀스택 (Solo Dev)</span>
-                  </span>
-                  <span className="tech-badge highlight-purple">
-                    <TechIcon name="ai-agent" className="tech-item-icon" />
-                    <span className="tech-badge-text">AI 분석 기능 제품화</span>
-                  </span>
-                  <span className="tech-badge">
-                    <TechIcon name="Next.js" className="tech-item-icon" />
-                    <span className="tech-badge-text">Next.js</span>
-                  </span>
-                  <span className="tech-badge">
-                    <TechIcon name="React" className="tech-item-icon" />
-                    <span className="tech-badge-text">React</span>
-                  </span>
-                  <span className="tech-badge">
-                    <TechIcon name="Supabase" className="tech-item-icon" />
-                    <span className="tech-badge-text">Supabase</span>
-                  </span>
-                  <span className="tech-badge">
-                    <TechIcon name="Gemini AI" className="tech-item-icon" />
-                    <span className="tech-badge-text">Gemini AI</span>
-                  </span>
-                </div>
-                <div className="case-summary-grid">
-                  {bgmsScope.map((item, index) => (
-                    <article key={item.title} className="case-flow-card">
-                      <span className="case-summary-number">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <div className="case-summary-content">
-                        <h3>{item.title}</h3>
-                        <p>{item.body}</p>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </div>
-
-              <div className="featured-right-panel">
-                <div className="decision-panel">
-                  <h3>핵심 구현 판단</h3>
-                  <ol>
-                    {bgmsDecisions.map((decision) => (
-                      <li key={decision.title}>
-                        <strong>{decision.title}</strong>
-                        <span>{decision.body}</span>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-                <div className="featured-links">
-                  <a
-                    className="inline-link"
-                    href="https://bgms.kr"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    서비스 보기
-                  </a>
-                  <a
-                    className="inline-link"
-                    href="https://github.com/ka6865/pubg-map-app"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    GitHub 저장소
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="operations-block">
-              <div className="operations-heading">
-                <p className="eyebrow">Operations</p>
-                <h3>운영 관리를 고려한 관리자 시스템</h3>
-                <p>
-                  사용자가 보는 기능 뒤에는 관리자 권한, API 응답 상태, 커뮤니티
-                  보호 기준처럼 실제 운영 중 확인해야 할 관리 흐름을 정리했습니다.
-                </p>
-              </div>
-              <div className="operations-grid">
-                {bgmsOperations.map((item) => (
-                  <article key={item.title} className="operation-card">
-                    <h3>{item.title}</h3>
-                    <p>{item.body}</p>
-                    <div className="operation-tags">
-                      {item.tags.map((tag) => (
-                        <span key={tag}>{tag}</span>
-                      ))}
-                    </div>
-                  </article>
-                ))}
-              </div>
+            <div className="featured-links">
+              <a className="inline-link" href="https://bgms.kr" target="_blank" rel="noreferrer">
+                <TechIcon name="globe" className="btn-icon" />
+                <span>서비스 보기</span>
+              </a>
+              <a className="inline-link" href="https://github.com/ka6865/pubg-map-app" target="_blank" rel="noreferrer">
+                <TechIcon name="github" className="btn-icon" />
+                <span>GitHub 저장소</span>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="projects" className="section projects-section">
+      <section id="projects" className="section projects-section" data-reveal>
         <div className="section-heading compact">
           <p className="eyebrow">Team Projects Archive</p>
           <h2>팀 협업에서 담당한 핵심 엔지니어링 구현 사례</h2>
@@ -489,7 +415,7 @@ export default function Home() {
         <TeamProjectShowcase projects={projects} />
       </section>
 
-      <section id="tech" className="section tech-section">
+      <section id="tech" className="section tech-section" data-reveal>
         <div className="section-heading compact">
           <p className="eyebrow">Tech Stack</p>
           <h2>프로젝트 전반에서 사용한 기술 스택 및 운영 역량</h2>
@@ -501,6 +427,7 @@ export default function Home() {
                 <TechIcon name={group.categoryKey} className="tech-group-icon" />
                 <h3>{group.title}</h3>
               </div>
+              <p className="tech-evidence">{group.evidence}</p>
               <div className="tech-badge-container">
                 {group.items.map((item) => (
                   <span key={item} className="tech-badge">
@@ -514,41 +441,32 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section growth-section">
-        <div className="section-heading compact">
-          <p className="eyebrow">Experience / Growth</p>
-          <h2>프로젝트를 개선하며 정리한 기준</h2>
-        </div>
-        <div className="growth-list">
-          {growthItems.map((item, index) => (
-            <article key={item.title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <footer id="contact" className="footer">
+      <footer id="contact" className="footer" data-reveal>
         <div>
           <p className="eyebrow">Contact</p>
           <h2>같이 일할 준비가 된 개발자, 강희성입니다.</h2>
           <p>
-            BGMS 운영 경험과 팀 프로젝트 구현 경험을 바탕으로, 맡은 범위를
-            화면과 코드로 설명할 수 있게 준비했습니다.
+            운영 서비스에서 쌓은 구현·개선 경험과 팀 프로젝트 경험을 바탕으로,
+            맡은 범위를 화면과 코드로 설명할 수 있게 준비했습니다.
           </p>
         </div>
-        <div className="footer-links">
-          <a href="https://github.com/ka6865" target="_blank" rel="noreferrer">
-            GitHub
-          </a>
-          <a href="mailto:ka6865@gmail.com">Email</a>
-          <a href="https://bgms.kr" target="_blank" rel="noreferrer">
-            BGMS
-          </a>
+        <div className="footer-contact-panel">
+          <p>Public work &amp; contact</p>
+          <div className="footer-links">
+            <a href="https://github.com/ka6865" target="_blank" rel="noreferrer">
+              <TechIcon name="github" className="btn-icon" />
+              <span>GitHub</span>
+            </a>
+            <a href="mailto:ka6865@gmail.com">
+              <TechIcon name="mail" className="btn-icon" />
+              <span>Email</span>
+            </a>
+            <a href="https://bgms.kr" target="_blank" rel="noreferrer">
+              <TechIcon name="globe" className="btn-icon" />
+              <span>BGMS</span>
+            </a>
+          </div>
+          <span>운영 서비스와 공개 저장소는 각 프로젝트에서 바로 확인할 수 있습니다.</span>
         </div>
       </footer>
     </main>
