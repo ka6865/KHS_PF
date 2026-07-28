@@ -1,4 +1,5 @@
 import { BgmsFeatureSlider } from "./components/BgmsFeatureSlider";
+import { SectionLink } from "./components/SectionLink";
 import { TeamProjectShowcase } from "./components/TeamProjectShowcase";
 import { TechIcon } from "./components/TechIcon";
 
@@ -58,7 +59,7 @@ const aboutCoreValues = [
     iconKey: "about-architecture",
     title: "Stable Boundaries",
     subtitle: "데이터와 권한 경계 분리",
-    body: "외부 API, 인증/권한, 사용자 데이터를 한 흐름에 억지로 섞지 않고 실패 조건과 책임 범위를 나눕니다.",
+    body: "PUBG API 조회는 응답 상태 기준으로, Supabase 인증/RLS는 권한 기준으로, 사용자 작성 데이터는 검증과 제한 기준으로 나눠 한 기능의 실패가 전체 화면 장애로 번지지 않게 설계했습니다.",
   },
 ];
 
@@ -140,8 +141,8 @@ const bgmsOperations = [
   },
   {
     title: "운영 모니터링",
-    body: "PUBG API 응답, AI 분석 요청, Supabase 데이터 상태처럼 운영 중 확인해야 하는 항목을 관리자 화면 기준으로 정리했습니다.",
-    tags: ["API Quota", "AI Cost", "Storage Health"],
+    body: "PUBG API 응답, AI 분석 요청, Supabase 데이터 상태를 관리자 화면에서 확인하고, Discord 금일 운영 리포트로 서비스 점검 흐름을 관리했습니다.",
+    tags: ["API Quota", "AI Cost", "Discord Report"],
   },
   {
     title: "커뮤니티 보호 흐름",
@@ -235,15 +236,19 @@ export default function Home() {
     <main className="min-h-screen bg-[#f7f3ea] text-[#181818]">
       <section id="top" className="hero-shell">
         <nav className="top-nav" aria-label="주요 섹션">
-          <a className="brand" href="#top" aria-label="포트폴리오 맨 위로">
+          <SectionLink
+            className="brand"
+            sectionId="top"
+            ariaLabel="포트폴리오 맨 위로"
+          >
             KHS
-          </a>
+          </SectionLink>
           <div className="nav-links">
-            <a href="#about">About</a>
-            <a href="#featured">BGMS</a>
-            <a href="#projects">Projects</a>
-            <a href="#tech">Tech Stack</a>
-            <a href="#contact">Contact</a>
+            <SectionLink sectionId="about">About</SectionLink>
+            <SectionLink sectionId="featured">BGMS</SectionLink>
+            <SectionLink sectionId="projects">Projects</SectionLink>
+            <SectionLink sectionId="tech">Tech Stack</SectionLink>
+            <SectionLink sectionId="contact">Contact</SectionLink>
           </div>
         </nav>
 
@@ -268,9 +273,9 @@ export default function Home() {
               >
                 BGMS.kr 운영 서비스
               </a>
-              <a className="secondary-link" href="#projects">
+              <SectionLink className="secondary-link" sectionId="projects">
                 프로젝트 보기
-              </a>
+              </SectionLink>
             </div>
             <div className="hero-quick-links" aria-label="주요 외부 링크">
               <a href="https://github.com/ka6865" target="_blank" rel="noreferrer">
