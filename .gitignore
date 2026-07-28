@@ -1,0 +1,43 @@
+# dependencies
+/node_modules/
+/.pnp
+.pnp.*
+
+# package managers
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# local environment
+.env*
+*.pem
+
+# build outputs
+/dist/
+/out/
+/.next/
+/.vinext/
+/.wrangler/
+/outputs/
+/work/
+
+# test and coverage
+/coverage/
+
+# TypeScript
+next-env.d.ts
+*.tsbuildinfo
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# editor and OS files
+.DS_Store
+.idea/
+.vscode/
