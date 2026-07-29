@@ -77,7 +77,7 @@ export function HeroBusinessCard() {
               <span>bgms.kr/stats</span>
             </div>
             <img
-              src="/portfolio-assets/bgms-feature-search.png"
+              src="portfolio-assets/bgms-feature-search.png"
               alt="BGMS 대표 제품 화면"
               width={1920}
               height={1080}

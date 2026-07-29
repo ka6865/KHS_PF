@@ -426,6 +426,13 @@ img {
   transform: rotateY(180deg);
 }
 
+.hero-card-flipper.is-flipped .hero-card-front {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 300ms ease, visibility 300ms ease;
+}
+
 .hero-card-face {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
