@@ -813,6 +813,7 @@ img {
   max-width: 1180px;
   margin: 0 auto;
   padding: 92px clamp(20px, 4vw, 72px);
+  scroll-margin-top: 80px;
 }
 
 .section-heading {
@@ -1908,6 +1909,7 @@ img {
   margin: 0 auto;
   padding: 82px clamp(20px, 4vw, 72px);
   border-top: 1px solid var(--line);
+  scroll-margin-top: 80px;
 }
 
 .footer h2 {
