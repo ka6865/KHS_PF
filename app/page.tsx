@@ -163,7 +163,7 @@ const projects = [
   {
     title: "AI Trading Assistant",
     type: "AI / Finance",
-    category: "Team Project (PM & Lead)",
+    category: "Team Project",
     role: "담당: 프로젝트 총괄, ML/LangChain AI 파이프라인, 조건/자동매매 엔진, AWS EC2 배포 경험",
     description: "주식/가상자산 실시간 상세 대시보드, ML/LangChain AI 챗봇, AI 자동매매펀드 및 조건 매매를 포함한 풀스택 AI 금융 플랫폼입니다.",
     stack: ["React", "Flask", "LangChain", "Supabase", "LightGBM", "Docker", "AWS EC2"],
@@ -171,7 +171,7 @@ const projects = [
     problem: "프로젝트 전체 리딩과 함께 LangChain 챗봇 연동, 조건/자동매매 엔진 구축, 거래소 API Key 보안, Docker 기반 AWS EC2 배포 경험을 하나의 서비스 흐름으로 정리해야 했습니다.",
     solution: "LangChain 기반 맥락 챗봇과 ML 신호 엔진을 구축하고, API Key 암호화 등록/자산 이동 로직 구현 후 Docker Compose 기반 실행 환경을 AWS EC2에서 구동해 본 경험을 정리했습니다.",
     result: "총괄 리더로서 AI 자동 펀드 매매/조건 매매 흐름과 주요 UI를 구현하고, Docker Compose 기반 EC2 배포 경험을 프로젝트 기록으로 정리했습니다.",
-    link: "https://github.com/Grand-slam-project/Trading",
+    link: "https://trading-lake-ten.vercel.app/",
   },
   {
     title: "Subway 1_8",

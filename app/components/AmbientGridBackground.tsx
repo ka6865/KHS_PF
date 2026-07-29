@@ -40,10 +40,6 @@ export function AmbientGridBackground() {
   return (
     <div className="ambient-background-shell" aria-hidden="true">
       <div className="grid-pattern-overlay" />
-      <div
-        ref={cursorRef}
-        className={`grid-cursor-marker ${isVisible ? "is-visible" : ""}`}
-      />
     </div>
   );
 }
