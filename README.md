@@ -5,7 +5,7 @@
 ## 핵심 내용
 
 - 대표 프로젝트: [BGMS.kr](https://bgms.kr)
-- 포지션: Full-stack / AI Developer
+- 포지션: Full-stack Developer
 - 주요 기술: Next.js, React, TypeScript, Supabase, Gemini AI, Cloudflare, Docker
 - 보조 프로젝트: AI Trading Assistant, Subway 1_8, KBO Ticket Platform
 

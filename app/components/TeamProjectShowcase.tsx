@@ -16,6 +16,12 @@ export interface TeamProject {
   solution: string;
   result: string;
   link: string;
+  linkLabel?: string;
+  linkIcon?: "github" | "external-link";
+  liveLinks?: Array<{
+    href: string;
+    label: string;
+  }>;
 }
 
 interface TeamProjectShowcaseProps {
@@ -34,13 +40,25 @@ function formatProjectUrl(url: string) {
 export function TeamProjectShowcase({ projects }: TeamProjectShowcaseProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ align: "center", loop: true, watchDrag: false });
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState<number>();
   const dragStartXRef = useRef<number | null>(null);
   const wheelLockRef = useRef(false);
+
+  const updateViewportHeight = useCallback(() => {
+    if (!emblaApi) return;
+
+    const activeSlide = emblaApi.slideNodes()[emblaApi.selectedScrollSnap()];
+    if (!activeSlide) return;
+
+    const nextHeight = Math.ceil(activeSlide.getBoundingClientRect().height);
+    setViewportHeight((currentHeight) => (currentHeight === nextHeight ? currentHeight : nextHeight));
+  }, [emblaApi]);
 
   const updateSelectedProject = useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
+    updateViewportHeight();
+  }, [emblaApi, updateViewportHeight]);
 
   const setupCarousel = useCallback(() => {
     if (!emblaApi) return;
@@ -51,15 +69,18 @@ export function TeamProjectShowcase({ projects }: TeamProjectShowcaseProps) {
     if (!emblaApi) return;
 
     const setupFrame = window.requestAnimationFrame(setupCarousel);
+    const resizeObserver = new ResizeObserver(updateViewportHeight);
+    emblaApi.slideNodes().forEach((slide) => resizeObserver.observe(slide));
     emblaApi.on("select", updateSelectedProject);
     emblaApi.on("reInit", setupCarousel);
 
     return () => {
       window.cancelAnimationFrame(setupFrame);
+      resizeObserver.disconnect();
       emblaApi.off("select", updateSelectedProject);
       emblaApi.off("reInit", setupCarousel);
     };
-  }, [emblaApi, setupCarousel, updateSelectedProject]);
+  }, [emblaApi, setupCarousel, updateSelectedProject, updateViewportHeight]);
 
   const scrollTo = (index: number) => emblaApi?.scrollTo(index);
   const scrollPrev = () => emblaApi?.scrollPrev();
@@ -133,9 +154,14 @@ export function TeamProjectShowcase({ projects }: TeamProjectShowcaseProps) {
         })}
       </div>
 
-      <div className="project-showcase-viewport" ref={emblaRef} onWheel={handleWheel}>
+      <div
+        className="project-showcase-viewport"
+        ref={emblaRef}
+        onWheel={handleWheel}
+        style={viewportHeight ? { height: `${viewportHeight}px` } : undefined}
+      >
         <div className="project-showcase-container">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <article className="project-showcase-slide" key={project.title}>
               <div className="project-showcase-media">
                 <div className="browser-header">
@@ -158,6 +184,7 @@ export function TeamProjectShowcase({ projects }: TeamProjectShowcaseProps) {
                     width={1920}
                     height={1080}
                     draggable={false}
+                    onLoad={updateViewportHeight}
                   />
                   <div className="project-showcase-media-label">
                     <span>{project.category}</span>
@@ -177,10 +204,6 @@ export function TeamProjectShowcase({ projects }: TeamProjectShowcaseProps) {
                     <p className="project-role-tag">{project.role}</p>
                     <p>{project.description}</p>
                   </div>
-                  <a className="inline-link" href={project.link} target="_blank" rel="noreferrer">
-                    <TechIcon name="github" className="btn-icon" />
-                    <span>저장소 보기</span>
-                  </a>
                 </div>
 
                 <div className="stack-list">
@@ -204,6 +227,34 @@ export function TeamProjectShowcase({ projects }: TeamProjectShowcaseProps) {
                   <div className="project-proof">
                     <span>03 / 결과</span>
                     <p>{project.result}</p>
+                  </div>
+                </div>
+
+                <div className="project-showcase-action-bar">
+                  <div className="project-showcase-navigation" aria-label="프로젝트 이동">
+                    <button type="button" onClick={scrollPrev} aria-label="이전 프로젝트 보기">
+                      <span aria-hidden="true">←</span>
+                      이전
+                    </button>
+                    <span aria-live="polite">
+                      {String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+                    </span>
+                    <button type="button" onClick={scrollNext} aria-label="다음 프로젝트 보기">
+                      다음
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </div>
+                  <div className="project-showcase-links">
+                    {project.liveLinks?.map((liveLink) => (
+                      <a className="inline-link" href={liveLink.href} target="_blank" rel="noreferrer" key={liveLink.href}>
+                        <TechIcon name="external-link" className="btn-icon" />
+                        <span>{liveLink.label}</span>
+                      </a>
+                    ))}
+                    <a className="inline-link" href={project.link} target="_blank" rel="noreferrer">
+                      <TechIcon name={project.linkIcon ?? "github"} className="btn-icon" />
+                      <span>{project.linkLabel ?? "GitHub 저장소 보기"}</span>
+                    </a>
                   </div>
                 </div>
               </div>

@@ -57,13 +57,13 @@ const architectureNodes: SystemNode[] = [
   },
   {
     id: "actions",
-    name: "GitHub Actions & Cron Pipeline",
-    sub: "CRON_SECRET & Background Cleanup",
+    name: "GitHub Actions Daily Maintenance",
+    sub: "Scheduled Cleanup & Operations Snapshot",
     protocol: "CRON / Bearer Auth",
     step: "05 Maintenance",
     icon: "cat-operation",
-    desc: "정기 랭킹 갱신 및 유실 이미지 정제 파이프라인",
-    detail: "CRON_SECRET 검증 기반 예약 작업으로 정기 패치노트 동기화, 랭킹 캐시 갱신, 본문 미참조 유실 이미지 분류 정제 작업을 백그라운드 수행",
+    desc: "일일 데이터 수집·캐시 정리·운영 상태 기록 작업",
+    detail: "GitHub Actions 예약 작업으로 텔레메트리 저장소와 AI 캐시를 정리하고, 상위 플레이어 데이터 수집·블루존 통계 추출·패치노트 동기화·관리 모니터 스냅샷을 수행합니다.",
   },
 ];
 

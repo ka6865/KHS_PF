@@ -19,9 +19,10 @@ const heroProofs = [
 ];
 
 const portfolioMetrics = [
-  { label: "사용자 지표", value: "" },
-  { label: "운영 기간", value: "" },
-  { label: "성능 개선", value: "" },
+  { label: "프로젝트 시작", value: "2025.12" },
+  { label: "가입 회원", value: "145명", note: "관리자 제외" },
+  { label: "최근 30일 세션", value: "3,417", note: "2026.07 집계" },
+  { label: "AI 기능 사용", value: "122회", note: "2026.07 집계" },
 ];
 
 const aboutHighlights = [
@@ -171,7 +172,8 @@ const projects = [
     problem: "프로젝트 전체 리딩과 함께 LangChain 챗봇 연동, 조건/자동매매 엔진 구축, 거래소 API Key 보안, Docker 기반 AWS EC2 배포 경험을 하나의 서비스 흐름으로 정리해야 했습니다.",
     solution: "LangChain 기반 맥락 챗봇과 ML 신호 엔진을 구축하고, API Key 암호화 등록/자산 이동 로직 구현 후 Docker Compose 기반 실행 환경을 AWS EC2에서 구동해 본 경험을 정리했습니다.",
     result: "총괄 리더로서 AI 자동 펀드 매매/조건 매매 흐름과 주요 UI를 구현하고, Docker Compose 기반 EC2 배포 경험을 프로젝트 기록으로 정리했습니다.",
-    link: "https://trading-lake-ten.vercel.app/",
+    link: "https://github.com/Grand-slam-project/Trading",
+    liveLinks: [{ href: "https://trading-lake-ten.vercel.app/", label: "서비스 보기" }],
   },
   {
     title: "Subway 1_8",
@@ -180,11 +182,15 @@ const projects = [
     role: "담당: 데이터 전처리 파이프라인 & XGBoost 혼잡도 예측 모델링",
     description: "서울 지하철 1-8호선 400만 행 탑승 데이터 기반의 시간대별 및 역별 실시간 혼잡도 예측 대시보드입니다.",
     stack: ["Streamlit", "Plotly", "XGBoost", "Pandas", "Scikit-learn"],
-    visual: "portfolio-assets/subway-dashboard.png",
+    visual: "portfolio-assets/subway-dashboard-cropped.png",
     problem: "서울 지하철 1-8호선 400만 행 데이터 전처리 파이프라인 구축 및 XGBoost 모델 기반 실시간 혼잡도 예측 연산 최적화가 필요했습니다.",
     solution: "대용량 400만 행 탑승 데이터셋 정제/전처리 파이프라인을 구축하고, XGBoost 혼잡도 예측 연산 흐름을 대시보드 시각화와 결합했습니다.",
     result: "XGBoost 기반 서울 지하철 1-8호선 실시간 24시간 혼잡도 예측 모델링 및 데이터 전처리를 성공적으로 완수했습니다.",
     link: "https://github.com/ka6865/subway-line2",
+    liveLinks: [
+      { href: "https://huggingface.co/spaces/heesung00/Decafe_line1_8", label: "1-8호선 보기" },
+      { href: "https://huggingface.co/spaces/heesung00/decaf_line2", label: "2호선 보기" },
+    ],
   },
   {
     title: "KBO Ticket Platform",
@@ -278,6 +284,7 @@ export default function Home() {
                   <div key={metric.label}>
                     <dt>{metric.label}</dt>
                     <dd>{metric.value}</dd>
+                    {metric.note ? <small>{metric.note}</small> : null}
                   </div>
                 ))}
               </dl>
@@ -298,6 +305,7 @@ export default function Home() {
 
       <section id="about" className="section about-section" data-reveal>
         <div className="section-heading">
+          <span className="section-index">01</span>
           <p className="eyebrow">About Me</p>
           <h2>BGMS에서 보여준 구현 범위</h2>
           <p>
@@ -351,6 +359,7 @@ export default function Home() {
 
       <section id="featured" className="section featured-section" data-reveal>
         <div className="section-heading">
+          <span className="section-index">02</span>
           <p className="eyebrow">Featured Project</p>
           <h2>BattleGrounds Management System</h2>
           <p>
@@ -382,6 +391,7 @@ export default function Home() {
 
       <section id="projects" className="section projects-section" data-reveal>
         <div className="section-heading compact">
+          <span className="section-index">03</span>
           <p className="eyebrow">Team Projects Archive</p>
           <h2>팀 협업에서 담당한 핵심 엔지니어링 구현 사례</h2>
         </div>
@@ -391,6 +401,7 @@ export default function Home() {
 
       <section id="tech" className="section tech-section" data-reveal>
         <div className="section-heading compact">
+          <span className="section-index">04</span>
           <p className="eyebrow">Tech Stack</p>
           <h2>프로젝트 전반에서 사용한 기술 스택 및 운영 역량</h2>
         </div>
@@ -417,8 +428,9 @@ export default function Home() {
         </div>
       </section>
 
-      <footer id="contact" className="footer" data-reveal>
-        <div>
+      <section id="contact" className="section contact-section" data-reveal>
+        <div className="contact-copy">
+          <span className="section-index">05</span>
           <p className="eyebrow">Contact</p>
           <h2>같이 일할 준비가 된 개발자, 강희성입니다.</h2>
           <p>
@@ -427,7 +439,6 @@ export default function Home() {
           </p>
         </div>
         <div className="footer-contact-panel">
-          <p>Public work &amp; contact</p>
           <div className="footer-links">
             <a href="https://github.com/ka6865" target="_blank" rel="noreferrer">
               <TechIcon name="github" className="btn-icon" />
@@ -439,9 +450,8 @@ export default function Home() {
               <span>BGMS</span>
             </a>
           </div>
-          <span>운영 서비스와 공개 저장소는 각 프로젝트에서 바로 확인할 수 있습니다.</span>
         </div>
-      </footer>
+      </section>
     </main>
   );
 }

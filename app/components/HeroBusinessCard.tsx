@@ -137,7 +137,6 @@ export function HeroBusinessCard() {
               <span>React 19</span>
               <span>TypeScript</span>
               <span>Supabase</span>
-              <span>Gemini AI</span>
             </div>
           </div>
 

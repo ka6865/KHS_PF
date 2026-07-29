@@ -21,7 +21,13 @@ export function PortfolioNav() {
 
     const updateActiveSection = () => {
       frameId = 0;
-      const marker = window.innerHeight * 0.34;
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 28;
+      if (isAtBottom) {
+        setActiveSection("contact");
+        return;
+      }
+
+      const marker = window.innerHeight * 0.38;
       let nextSection = "top";
 
       for (const sectionId of sectionIds) {
