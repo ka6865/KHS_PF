@@ -78,6 +78,7 @@
 .footer-link-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   min-height: 46px;
   padding: 0 18px;
@@ -87,13 +88,12 @@
   font-size: 14px;
   font-weight: 850;
   cursor: pointer;
-  transition: all 180ms ease;
-}
-
-.footer-link-btn:hover {
-  background: rgba(255, 250, 240, 0.1);
-  border-color: var(--yellow);
-  color: var(--yellow);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .copy-toast-badge {
@@ -2134,7 +2134,8 @@ img {
   .primary-link:hover,
   .secondary-link:hover,
   .inline-link:hover,
-  .footer-links a:hover {
+  .footer-links a:hover,
+  .footer-link-btn:hover {
     border-color: var(--yellow);
     transform: translateY(-2px);
     box-shadow: 0 10px 24px rgba(24, 24, 24, 0.12);
@@ -2147,7 +2148,8 @@ img {
 
   .secondary-link:hover,
   .inline-link:hover,
-  .footer-links a:hover {
+  .footer-links a:hover,
+  .footer-link-btn:hover {
     background: #fffaf0;
     color: #5f4305;
   }

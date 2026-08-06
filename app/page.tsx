@@ -20,9 +20,9 @@ const heroProofs = [
 
 const portfolioMetrics = [
   { label: "프로젝트 시작", value: "2025.12" },
-  { label: "가입 회원", value: "145명", note: "관리자 제외" },
-  { label: "최근 30일 세션", value: "3,417", note: "2026.07 집계" },
-  { label: "AI 기능 사용", value: "122회", note: "2026.07 집계" },
+  { label: "가입 회원", value: "171명", note: "관리자 계정 제외 · 2026.08.05 기준" },
+  { label: "최근 30일 세션", value: "3,339", note: "내부 트래픽 제외 · 2026.08.05 기준" },
+  { label: "AI 분석 요청", value: "674회", note: "AI 요청 로그 기준 · 2026.08.05 기준" },
 ];
 
 const aboutHighlights = [

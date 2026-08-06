@@ -42,11 +42,14 @@ test("server-renders the portfolio landing page", async () => {
   assert.match(html, /프로젝트 시작/);
   assert.match(html, /2025\.12/);
   assert.match(html, /가입 회원/);
-  assert.match(html, /145명/);
+  assert.match(html, /171명/);
+  assert.match(html, /관리자 계정 제외 · 2026\.08\.05 기준/);
   assert.match(html, /최근 30일 세션/);
-  assert.match(html, /3,417/);
-  assert.match(html, /AI 기능 사용/);
-  assert.match(html, /122회/);
+  assert.match(html, /3,339/);
+  assert.match(html, /내부 트래픽 제외 · 2026\.08\.05 기준/);
+  assert.match(html, /AI 분석 요청/);
+  assert.match(html, /674회/);
+  assert.match(html, /AI 요청 로그 기준 · 2026\.08\.05 기준/);
   assert.match(html, /BGMS 대표 제품 화면/);
   assert.match(html, /LIVE SERVICE/);
   assert.match(html, /프로젝트 보기/);
@@ -204,6 +207,8 @@ test("keeps the portfolio structure and product interactions in sync", async () 
   assert.match(styles, /@media \(hover: hover\)/);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(styles, /\.primary-link:hover/);
+  assert.match(styles, /\.footer-link-btn\s*\{[^}]*justify-content:\s*center;/);
+  assert.match(styles, /\.footer-links a:hover,\s*\.footer-link-btn:hover/);
   assert.match(layout, /lang="ko"/);
   assert.match(packageJson, /"name": "kang-heesung-portfolio"/);
   assert.match(packageJson, /"embla-carousel-react"/);
