@@ -55,7 +55,7 @@ const aboutCoreValues = [
     num: "01",
     iconKey: "about-flow",
     title: "Flow First",
-    subtitle: "기능보다 사용자 흐름",
+    subtitle: "기능을 나열하기보다 사용자 흐름을 우선합니다",
     body: "기능을 나열하기보다 사용자가 처음 들어와 목적을 달성하는 순서에 맞춰 화면과 이동 경로를 정리합니다.",
   },
   {
