@@ -42,14 +42,14 @@ test("server-renders the portfolio landing page", async () => {
   assert.match(html, /프로젝트 시작/);
   assert.match(html, /2025\.12/);
   assert.match(html, /가입 회원/);
-  assert.match(html, /171명/);
-  assert.match(html, /관리자 계정 제외 · 2026\.08\.05 기준/);
+  assert.match(html, /425명/);
+  assert.match(html, /관리자 계정 제외 · 2026\.09\.17 기준/);
   assert.match(html, /최근 30일 세션/);
-  assert.match(html, /3,339/);
-  assert.match(html, /내부 트래픽 제외 · 2026\.08\.05 기준/);
+  assert.match(html, /3,591/);
+  assert.match(html, /내부 트래픽 제외 · 2026\.08\.19~09\.17 집계/);
   assert.match(html, /AI 분석 요청/);
-  assert.match(html, /674회/);
-  assert.match(html, /AI 요청 로그 기준 · 2026\.08\.05 기준/);
+  assert.match(html, /2,069회/);
+  assert.match(html, /AI 요청 로그 기준 · 2026\.08\.19~09\.17 집계/);
   assert.match(html, /BGMS 대표 제품 화면/);
   assert.match(html, /LIVE SERVICE/);
   assert.match(html, /프로젝트 보기/);
@@ -114,6 +114,7 @@ test("server-renders the portfolio landing page", async () => {
   assert.match(html, /Frontend/);
   assert.match(html, /Backend/);
   assert.match(html, /AI \/ Data/);
+  assert.match(html, /Operations &amp; Quality|Operations & Quality/);
   assert.doesNotMatch(html, /Experience \/ Growth/);
   assert.match(html, /같이 일할 준비가 된 개발자/);
   assert.match(html, /화면과 코드로 설명할 수 있게 준비했습니다/);
@@ -143,6 +144,7 @@ test("keeps the portfolio structure and product interactions in sync", async () 
   assert.match(page, /ArchitectureDiagram/);
   assert.doesNotMatch(page, /heroMockupSlides/);
   assert.match(page, /bgmsFeatureSlides/);
+  assert.match(page, /AI 스쿼드 분석 & 전적 비교/);
   assert.match(page, /caseStudy:/);
   assert.match(page, /BgmsFeatureSlider/);
   assert.match(slider, /slides\.length/);

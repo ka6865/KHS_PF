@@ -214,6 +214,46 @@ export function TechIcon({ name, className = "w-4 h-4" }: TechIconProps) {
         </svg>
       );
 
+    case "turnstile":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#F38020" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 3 20 7v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z" />
+          <path d="m8.5 12 2.2 2.2 4.8-5" />
+        </svg>
+      );
+
+    case "cache":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <ellipse cx="12" cy="5" rx="8" ry="3" />
+          <path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5" />
+          <path d="M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7" />
+        </svg>
+      );
+
+    case "quality gates":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#22C55E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="9" />
+          <path d="m8 12 2.5 2.5L16 9" />
+        </svg>
+      );
+
+    case "observability":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 12h4l2-7 4 14 2-7h6" />
+        </svg>
+      );
+
+    case "data audit":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M6 3h9l3 3v15H6z" />
+          <path d="M14 3v4h4M9 12h6M9 16h4" />
+        </svg>
+      );
+
     // Group Header Category Icons
     case "cat-frontend":
       return (

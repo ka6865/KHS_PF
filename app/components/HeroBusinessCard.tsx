@@ -95,7 +95,7 @@ export function HeroBusinessCard() {
             </div>
             <div>
               <dt>Scope</dt>
-              <dd>Map / Stats / AI / Community</dd>
+              <dd>Map / Stats / AI / Tools / Community</dd>
             </div>
             <div>
               <dt>Operations</dt>

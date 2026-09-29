@@ -16,13 +16,15 @@ const heroProofs = [
   "PUBG API + Telemetry",
   "AI 코칭 + Replay",
   "Security + Operations",
+  "2026.09 서비스 업데이트",
 ];
 
 const portfolioMetrics = [
   { label: "프로젝트 시작", value: "2025.12" },
-  { label: "가입 회원", value: "171명", note: "관리자 계정 제외 · 2026.08.05 기준" },
-  { label: "최근 30일 세션", value: "3,339", note: "내부 트래픽 제외 · 2026.08.05 기준" },
-  { label: "AI 분석 요청", value: "674회", note: "AI 요청 로그 기준 · 2026.08.05 기준" },
+  { label: "가입 회원", value: "425명", note: "관리자 계정 제외 · 2026.09.17 기준" },
+  { label: "최근 30일 세션", value: "3,591", note: "내부 트래픽 제외 · 2026.08.19~09.17 집계" },
+  { label: "AI 분석 요청", value: "2,069회", note: "AI 요청 로그 기준 · 2026.08.19~09.17 집계" },
+  { label: "서비스 업데이트", value: "2026.09", note: "지도·AI·랭킹·커뮤니티 운영 중" },
 ];
 
 const aboutHighlights = [
@@ -158,6 +160,23 @@ const bgmsFeatureSlides = [
       operation: "비회원 요청은 Turnstile 서버 검증과 요청 제한을 거치게 하고, 업로드 이미지는 소유권 확인과 정리 수명주기로 관리했습니다.",
     },
   },
+  {
+    title: "AI 스쿼드 분석 & 전적 비교",
+    label: "Squad Insight",
+    body: "개인 전적을 넘어 팀 조합과 협동 지표를 분석하고, 저장한 플레이어 간 1:1 전적 비교까지 연결합니다.",
+    tags: ["Squad Synergy", "1:1 Compare", "Telemetry"],
+    image: "portfolio-assets/bgms-feature-report.png",
+    imageAlt: "BGMS AI 스쿼드 분석 및 전적 비교 기능 화면",
+    url: "https://bgms.kr/stats",
+    caseStudy: {
+      problemLead: "개인 지표만으로 팀 플레이를 설명하기 어려움",
+      problem: "개별 플레이어의 전적만 보면 팀 조합과 협동 과정에서 생기는 강점과 병목을 파악하기 어려웠습니다.",
+      solutionLead: "스쿼드 지표와 비교 흐름을 전적 화면에 통합",
+      solution: "스쿼드 시너지와 협동 지표를 개인 전적·AI 분석과 함께 배치하고, 저장한 플레이어의 1:1 비교로 확장했습니다.",
+      operationLead: "분석 범위와 요청 비용을 함께 제어",
+      operation: "분석 대상과 매치 범위를 제한하고 캐시된 결과를 재사용해, 팀 단위 분석에서도 불필요한 AI 재호출을 줄였습니다.",
+    },
+  },
 ];
 
 const projects = [
@@ -231,6 +250,12 @@ const techGroups = [
     categoryKey: "cat-operation",
     items: ["AWS EC2", "Docker", "Docker Compose", "Vercel", "Cloudflare R2", "GitHub Actions"],
     evidence: "BGMS R2 텔레메트리 저장소/Cron 정기 운영 및 AI Trading Docker Compose 기반 EC2 배포 경험",
+  },
+  {
+    title: "Operations & Quality",
+    categoryKey: "cat-operation",
+    items: ["GitHub Actions", "Turnstile", "Cache", "Quality Gates", "Observability", "Data Audit"],
+    evidence: "일일 텔레메트리·AI 캐시 정리, 데이터 품질 감사, 패치 노트 동기화와 사용자 생성 콘텐츠 보호를 운영 자동화",
   },
 ];
 
@@ -310,7 +335,7 @@ export default function Home() {
           <h2>BGMS에서 보여준 구현 범위</h2>
           <p>
             1인 풀스택 개발자로 사용자 흐름, 프론트엔드 화면, 외부 데이터 연결,
-            인증·권한, AI 분석 기능을 하나의 서비스 경험으로 연결했습니다.
+            인증·권한, AI 분석과 운영 자동화를 하나의 서비스 경험으로 연결했습니다.
           </p>
         </div>
 
