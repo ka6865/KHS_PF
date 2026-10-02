@@ -27,13 +27,13 @@ const architectureNodes: SystemNode[] = [
   },
   {
     id: "r2",
-    name: "Cloudflare R2 & Cache Lock",
-    sub: "Large File Store & Thundering Herd Resilience",
-    protocol: "S3 API / PL/pgSQL Lock",
+    name: "Cloudflare R2 & Cache Claims",
+    sub: "Object Storage & Generation Ownership",
+    protocol: "S3 API / DB Claim",
     step: "02 Storage",
     icon: "cat-operation",
     desc: "고용량 경기 텔레메트리 파일 객체 저장소",
-    detail: "고용량 텔레메트리 본문은 R2 객체 저장소로 분리 저장하고, DB에는 메타데이터 및 분산 캐시 락(Cache Lock)을 적용해 동시 재요청 스탬피드 방지",
+    detail: "텔레메트리 본문은 R2에 분리 저장하고, 경기·플랫폼·플레이어·모드·버전별 생성 권한을 DB에서 선점합니다. 만료 시간과 소유 토큰을 두며, 후속 요청은 완성 캐시와 권한 상태를 재확인합니다.",
   },
   {
     id: "supabase",
@@ -53,7 +53,7 @@ const architectureNodes: SystemNode[] = [
     step: "04 AI Engine",
     icon: "gemini ai",
     desc: "텔레메트리 기반 교전/생존 플레이어 AI 리포트",
-    detail: "플레이어 코칭 리포트 스트리밍 연동과 프롬프트/응답 구조 변경 시 이전 오염 캐시를 안전하게 자동 동기화·무효화하는 버저닝 알고리즘 운용",
+    detail: "코칭 응답을 스트리밍으로 전달하고, 플레이어·플랫폼·코칭 스타일·프롬프트 버전을 캐시 조회와 저장 키에 반영합니다. 프롬프트 변경 시 버전을 구분해 이전 응답의 재사용을 제어합니다.",
   },
   {
     id: "actions",

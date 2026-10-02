@@ -179,6 +179,49 @@ const bgmsFeatureSlides = [
   },
 ];
 
+const bgmsEngineeringCases = [
+  {
+    title: "생성 중인 캐시와 캐시 미스를 구분",
+    decision: "DB 생성 권한 선점 · 만료 시간 · 소유 토큰",
+    problem: "완성 파일의 유무만으로 캐시를 판단하면, 생성 중인 대상에도 후속 요청이 수집·분석 작업을 시작할 수 있었습니다.",
+    solution: "경기·플랫폼·플레이어·모드·버전별 생성 권한을 DB에서 원자적으로 선점합니다. 만료 시간으로 실패한 작업의 점유를 풀고, 소유 토큰으로 이전 작업이 새 작업의 권한을 해제하지 못하게 합니다.",
+    validation: "캐시 회귀 테스트 26개 통과. 경합을 모의한 검사에서 후속 요청의 완성 캐시 반환과 권한 해제 후 재획득을 확인했습니다.",
+    commit: "3a7ad6c4",
+    evidencePath: "tests/telemetry-map-cache.test.ts",
+    evidenceLabel: "회귀 테스트",
+  },
+  {
+    title: "미관측 값이 기존 전적을 덮어쓰지 않도록 저장",
+    decision: "관측된 0과 누락 구분 · 필드 조합별 upsert",
+    problem: "기절 수·생존 시간을 얻지 못한 행이 기존 값을 NULL로 덮어쓸 수 있었습니다. JSON에서 키를 생략해도 SDK의 bulk 요청은 행들의 필드 합집합을 갱신 대상으로 보냈습니다.",
+    solution: "실제 관측값만 포함하고, 같은 필드 조합의 행끼리 묶어 저장합니다. 기존 값을 먼저 읽어 합치는 추가 조회 없이 누락 필드는 보존하고 관측된 0은 갱신합니다.",
+    validation: "실제 SDK가 만든 columns·JSON과 모의 저장 결과를 검사했습니다. 혼합 5행은 4회, 완전한 batch는 1회 요청하며 기존 값 보존과 관측된 0의 갱신을 확인했습니다.",
+    commit: "2fb4af0b",
+    evidencePath: "tests/player-match-write-preservation.test.ts",
+    evidenceLabel: "SDK 요청 회귀 테스트",
+  },
+  {
+    title: "스트림 조각 처리와 모바일 로딩 종료 보완",
+    decision: "누적 버퍼 · 스트림 디코딩 · reader 직접 취소",
+    problem: "네트워크 조각이 JSON 한 줄이나 문자 경계와 일치하지 않아 파싱이 실패할 수 있었습니다. 모바일 AI 분석에는 로딩이 끝나지 않는 문제도 기록되어 있었습니다.",
+    solution: "관리자 채팅은 완성된 줄만 파싱하고 미완성 조각은 버퍼에 보관합니다. TextDecoder의 stream 모드로 문자 상태를 유지하고, 모바일 분석은 timeout·unmount에서 reader를 직접 취소하며 상태를 정리했습니다.",
+    validation: "모바일 취소 경로의 변경 이력과 현재 관리자 채팅의 누적 버퍼 구현을 확인했습니다. HTTP 응답 스트림을 처리한 사례입니다.",
+    commit: "b0d90c9b",
+    evidencePath: "components/admin/AdminAgentChat.tsx",
+    evidenceLabel: "스트림 처리 코드",
+  },
+  {
+    title: "AI 후처리가 정상 부정문을 훼손하는 문제 수정",
+    decision: "문장 맥락 보존 · 생성 결과와 캐시에 같은 규칙 적용",
+    problem: "근거 없는 권고를 제한하는 후처리가 ‘교전 빈도를 높여야 하는 것은 아닙니다’처럼 권고를 부정하는 정상 문장까지 바꿀 수 있었습니다.",
+    solution: "매칭한 표현 뒤의 부정 어미를 확인하고, 문제가 있는 문장만 제한·대체합니다. 주변의 정상 설명은 보존하며, 저장 전 결과와 캐시 재처리에 같은 정규화 규칙을 적용했습니다.",
+    validation: "회귀 테스트에서 확인된 권고·부정문 패턴을 구분하고, 정상 부정문 뒤에 등장하는 별도 권고도 검사했습니다.",
+    commit: "b61e46dc",
+    evidencePath: "tests/ai-summary-advice.test.ts",
+    evidenceLabel: "AI 문장 회귀 테스트",
+  },
+];
+
 const projects = [
   {
     title: "AI Trading Assistant",
@@ -398,6 +441,47 @@ export default function Home() {
           <BgmsFeatureSlider slides={bgmsFeatureSlides} />
 
           <ArchitectureDiagram />
+
+          <section className="bgms-engineering" aria-labelledby="bgms-engineering-title">
+            <div className="architecture-header">
+              <p className="eyebrow">Engineering Cases</p>
+              <h3 id="bgms-engineering-title">운영 중 발견한 문제와 설계 선택</h3>
+              <p className="bgms-engineering-intro">
+                운영 중 발견한 문제의 원인, 설계 선택과 확인한 결과를
+                코드·변경 이력·회귀 테스트와 함께 정리했습니다.
+              </p>
+            </div>
+            {bgmsEngineeringCases.map((caseStudy, index) => (
+              <details key={caseStudy.title} className="bgms-engineering-case" open={index === 0}>
+                <summary>
+                  <strong>{caseStudy.title}</strong>
+                  <span>{caseStudy.decision}</span>
+                </summary>
+                <div className="feature-case-study">
+                  <article>
+                    <span>문제와 원인</span>
+                    <p>{caseStudy.problem}</p>
+                  </article>
+                  <article>
+                    <span>설계 선택</span>
+                    <p>{caseStudy.solution}</p>
+                  </article>
+                  <article>
+                    <span>확인한 결과</span>
+                    <p>{caseStudy.validation}</p>
+                  </article>
+                </div>
+                <div className="featured-links">
+                  <a className="inline-link" href={`https://github.com/ka6865/BGMS/commit/${caseStudy.commit}`} target="_blank" rel="noreferrer">
+                    <span>수정 커밋 {caseStudy.commit}</span>
+                  </a>
+                  <a className="inline-link" href={`https://github.com/ka6865/BGMS/blob/984f3054/${caseStudy.evidencePath}`} target="_blank" rel="noreferrer">
+                    <span>{caseStudy.evidenceLabel}</span>
+                  </a>
+                </div>
+              </details>
+            ))}
+          </section>
 
           <div className="featured-content">
             <div className="featured-links">

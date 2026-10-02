@@ -1125,6 +1125,53 @@ img {
   color: #fffaf0;
 }
 
+.bgms-engineering {
+  padding: clamp(20px, 4vw, 36px);
+  background: #121212;
+  color: #fffaf0;
+}
+
+.bgms-engineering-intro {
+  color: rgba(255, 250, 240, 0.82);
+  font-size: 13px;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.bgms-engineering-case {
+  margin-top: 14px;
+  border: 1px solid rgba(255, 250, 240, 0.18);
+}
+
+.bgms-engineering-case summary {
+  padding: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.bgms-engineering-case summary::marker {
+  color: var(--yellow);
+}
+
+.bgms-engineering-case summary span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 250, 240, 0.72);
+  font-size: 13px;
+}
+
+.bgms-engineering-case > .featured-links {
+  margin: 18px 20px;
+}
+
+.bgms-engineering .inline-link,
+.bgms-engineering .eyebrow {
+  color: var(--yellow);
+}
+
 .architecture-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
