@@ -16,7 +16,6 @@ const heroProofs = [
   "PUBG API + Telemetry",
   "AI 코칭 + Replay",
   "Security + Operations",
-  "2026.09 서비스 업데이트",
 ];
 
 const portfolioMetrics = [
@@ -24,7 +23,6 @@ const portfolioMetrics = [
   { label: "가입 회원", value: "581명", note: "현재 관리자 계정 제외 · 2026.10.31 기준" },
   { label: "최근 30일 세션", value: "4,723", note: "운영 DB · 내부 트래픽 제외 · 2026.10.02~10.31 집계" },
   { label: "AI 요청", value: "1,129회", note: "AI 요청 ID 기준 · 2026.10.02~10.31 집계" },
-  { label: "서비스 업데이트", value: "2026.09", note: "지도·AI·랭킹·커뮤니티 운영 중" },
 ];
 
 const aboutHighlights = [
@@ -232,10 +230,10 @@ const projects = [
     stack: ["React", "Flask", "LangChain", "Supabase", "LightGBM", "Docker", "AWS EC2"],
     visual: "portfolio-assets/ai-trading.png",
     problem: "프로젝트 전체 리딩과 함께 LangChain 챗봇 연동, 조건/자동매매 엔진 구축, 거래소 API Key 보안, Docker 기반 AWS EC2 배포 경험을 하나의 서비스 흐름으로 정리해야 했습니다.",
-    solution: "LangChain 기반 맥락 챗봇과 ML 신호 엔진을 구축하고, API Key 암호화 등록/자산 이동 로직 구현 후 Docker Compose 기반 실행 환경을 AWS EC2에서 구동해 본 경험을 정리했습니다.",
-    result: "총괄 리더로서 AI 자동 펀드 매매/조건 매매 흐름과 주요 UI를 구현하고, Docker Compose 기반 EC2 배포 경험을 프로젝트 기록으로 정리했습니다.",
+    solution: "LangChain 기반 맥락 챗봇과 ML 신호·조건 매매 흐름을 구현하고 Docker Compose로 AWS EC2 실행 환경을 구성했습니다. 팀원 PR은 AI 리뷰 스킬로 변경 파일·로직·개발 의도를 정리하고, 모의 병합·충돌 보고·빌드 확인을 거쳐 검토하는 절차를 마련했습니다.",
+    result: "프로젝트 총괄로 AI·매매 기능과 배포를 담당했습니다. git-team-merge 스킬을 구성해 팀원의 변경 내용을 파악하고, 본인 승인에 따라 병합하는 검토 절차를 마련했습니다.",
     link: "https://github.com/Grand-slam-project/Trading",
-    liveLinks: [{ href: "https://trading-lake-ten.vercel.app/", label: "서비스 보기" }],
+    serviceNotice: "AWS 무료 기간 종료로 인해 백엔드 서버 운영 종료",
   },
   {
     title: "Subway 1_8",

@@ -18,6 +18,7 @@ export interface TeamProject {
   link: string;
   linkLabel?: string;
   linkIcon?: "github" | "external-link";
+  serviceNotice?: string;
   liveLinks?: Array<{
     href: string;
     label: string;
@@ -245,6 +246,9 @@ export function TeamProjectShowcase({ projects }: TeamProjectShowcaseProps) {
                     </button>
                   </div>
                   <div className="project-showcase-links">
+                    {project.serviceNotice && (
+                      <span><s>서비스 보기</s> · {project.serviceNotice}</span>
+                    )}
                     {project.liveLinks?.map((liveLink) => (
                       <a className="inline-link" href={liveLink.href} target="_blank" rel="noreferrer" key={liveLink.href}>
                         <TechIcon name="external-link" className="btn-icon" />

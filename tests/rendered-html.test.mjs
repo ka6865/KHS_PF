@@ -50,6 +50,7 @@ test("server-renders the portfolio landing page", async () => {
   assert.match(html, /AI 요청/);
   assert.match(html, /1,129회/);
   assert.match(html, /AI 요청 ID 기준 · 2026\.10\.02~10\.31 집계/);
+  assert.doesNotMatch(html, /서비스 업데이트/);
   assert.match(html, /BGMS 대표 제품 화면/);
   assert.match(html, /LIVE SERVICE/);
   assert.match(html, /프로젝트 보기/);
@@ -108,6 +109,9 @@ test("server-renders the portfolio landing page", async () => {
   assert.match(html, /XGBoost/);
   assert.match(html, /거래 상태 불일치 방지/);
   assert.match(html, /Subway 1_8/);
+  assert.match(html, /AWS 무료 기간 종료로 인해 백엔드 서버 운영 종료/);
+  assert.match(html, /<s>서비스 보기<\/s>/);
+  assert.doesNotMatch(html, /trading-lake-ten\.vercel\.app/);
   assert.match(html, /KBO Ticket Platform/);
   assert.match(html, /Tech Stack/);
   assert.match(html, /프로젝트 전반에서 사용한 기술 스택 및 운영 역량/);
