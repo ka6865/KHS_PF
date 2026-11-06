@@ -22,8 +22,8 @@ const heroProofs = [
 const portfolioMetrics = [
   { label: "프로젝트 시작", value: "2025.12" },
   { label: "가입 회원", value: "581명", note: "현재 관리자 계정 제외 · 2026.10.31 기준" },
-  { label: "최근 30일 세션", value: "4,264", note: "내부 트래픽 제외 · 2026.10.02~10.31 집계" },
-  { label: "AI 요청", value: "1,182회", note: "AI 요청 로그 기준 · 2026.10.02~10.31 집계" },
+  { label: "최근 30일 세션", value: "4,723", note: "운영 DB · 내부 트래픽 제외 · 2026.10.02~10.31 집계" },
+  { label: "AI 요청", value: "1,129회", note: "AI 요청 ID 기준 · 2026.10.02~10.31 집계" },
   { label: "서비스 업데이트", value: "2026.09", note: "지도·AI·랭킹·커뮤니티 운영 중" },
 ];
 

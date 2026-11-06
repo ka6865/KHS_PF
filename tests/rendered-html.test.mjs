@@ -45,11 +45,11 @@ test("server-renders the portfolio landing page", async () => {
   assert.match(html, /581명/);
   assert.match(html, /현재 관리자 계정 제외 · 2026\.10\.31 기준/);
   assert.match(html, /최근 30일 세션/);
-  assert.match(html, /4,264/);
-  assert.match(html, /내부 트래픽 제외 · 2026\.10\.02~10\.31 집계/);
+  assert.match(html, /4,723/);
+  assert.match(html, /운영 DB · 내부 트래픽 제외 · 2026\.10\.02~10\.31 집계/);
   assert.match(html, /AI 요청/);
-  assert.match(html, /1,182회/);
-  assert.match(html, /AI 요청 로그 기준 · 2026\.10\.02~10\.31 집계/);
+  assert.match(html, /1,129회/);
+  assert.match(html, /AI 요청 ID 기준 · 2026\.10\.02~10\.31 집계/);
   assert.match(html, /BGMS 대표 제품 화면/);
   assert.match(html, /LIVE SERVICE/);
   assert.match(html, /프로젝트 보기/);
